@@ -76,6 +76,8 @@ h3{font-size:var(--fs-h3);font-weight:700}
 .gtext{background:linear-gradient(100deg,#22d3ee,#3b82f6,#7c5cff,#3b82f6,#22d3ee);
   background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
   animation:shine 7s linear infinite}
+.otext{background:linear-gradient(100deg,#ff8a3d,#ff5d6e);-webkit-background-clip:text;
+  background-clip:text;color:transparent}
 @keyframes shine{to{background-position:220% center}}
 
 /* ---- Section heading ---- */
@@ -166,22 +168,19 @@ h3{font-size:var(--fs-h3);font-weight:700}
 .hero__login{font-size:.9rem;color:var(--c-accent);text-decoration:underline;text-underline-offset:3px;font-weight:600}
 .hero__login:hover{color:var(--c-violet)}
 
-.hero__visual{position:relative;height:480px;border-radius:var(--r-lg);
-  background:radial-gradient(60% 50% at 62% 26%,rgba(255,200,120,.32),transparent),
-    linear-gradient(160deg,#27407a,#0e1a38);
-  box-shadow:0 30px 70px rgba(16,26,54,.4),inset 0 1px 0 rgba(255,255,255,.1);overflow:hidden}
-.hero__tower{position:absolute;right:32%;bottom:0;width:90px;height:310px;color:#ff7a45;
-  filter:drop-shadow(0 0 24px rgba(255,122,69,.5));animation:glowpulse 4s ease-in-out infinite}
-@keyframes glowpulse{50%{filter:drop-shadow(0 0 36px rgba(255,150,90,.8))}}
-.hero__badge{position:absolute;left:8%;top:26%;color:#fff;font-weight:700;font-size:1.05rem;
-  line-height:1.7;text-shadow:0 2px 12px rgba(0,0,0,.5)}
-.hero__stars{position:absolute;inset:0;background-image:
-  radial-gradient(1.5px 1.5px at 20% 30%,#fff,transparent),
-  radial-gradient(1.5px 1.5px at 70% 20%,#fff,transparent),
-  radial-gradient(1px 1px at 50% 50%,#fff,transparent),
-  radial-gradient(1.5px 1.5px at 85% 60%,#cfe3ff,transparent),
-  radial-gradient(1px 1px at 35% 70%,#fff,transparent);opacity:.7;animation:twinkle 5s ease-in-out infinite}
-@keyframes twinkle{50%{opacity:.35}}
+.hero__visual{position:relative;height:480px;border-radius:var(--r-lg);overflow:hidden;
+  background:linear-gradient(160deg,#27407a,#0e1a38);
+  box-shadow:0 30px 70px rgba(16,26,54,.4),inset 0 1px 0 rgba(255,255,255,.1)}
+.hero__photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.2s var(--ease)}
+.hero__visual:hover .hero__photo{transform:scale(1.04)}
+.hero__visual::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,23,51,.1),transparent 40%)}
+.hero__badge{position:absolute;left:7%;top:30%;z-index:2;color:#fff;font-weight:700;font-size:1.05rem;
+  line-height:1.7;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.hero__badge::before{content:"";position:absolute;left:-14px;top:-16px;width:40px;height:40px;
+  border-top:2px solid rgba(255,255,255,.6);border-left:2px solid rgba(255,255,255,.6);
+  border-radius:14px 0 0 0;opacity:.6}
 /* floating glass cards */
 .fcard{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;
   background:rgba(255,255,255,.92);backdrop-filter:blur(8px);box-shadow:0 12px 30px rgba(16,26,54,.28);
@@ -343,15 +342,15 @@ h3{font-size:var(--fs-h3);font-weight:700}
 /* =========================================================
    CTA
    ========================================================= */
-.cta{position:relative;overflow:clip;padding-block:clamp(64px,8vw,110px);
-  background:linear-gradient(120deg,#0e1a38,#1c2c5c 55%,#3a2c6e)}
-.cta .container{text-align:center}
-.cta__eyebrow{display:inline-block;font-size:.74rem;font-weight:800;letter-spacing:.18em;color:#9fc0ff;
-  padding:6px 16px;border-radius:var(--r-pill);background:rgba(255,255,255,.1);margin-bottom:var(--sp-5)}
-.cta__text{font-size:clamp(1.3rem,1rem + 1.6vw,2rem);font-weight:900;color:#fff;line-height:1.55}
-.cta__text .gtext{filter:drop-shadow(0 4px 18px rgba(124,92,255,.4))}
-.cta__actions{margin-top:var(--sp-7);display:flex;justify-content:center;gap:var(--sp-4);flex-wrap:wrap}
-.cta__note{margin-top:var(--sp-5);font-size:var(--fs-small);color:rgba(255,255,255,.6)}
+.cta-sakura{position:relative;min-height:340px;display:flex;align-items:center;overflow:hidden;
+  background:linear-gradient(90deg,#fde2ec,#fdeef0 55%,#f4f0fb)}
+.cta-sakura__media{position:absolute;inset:0;z-index:0}
+.cta-sakura__media img{width:100%;height:100%;object-fit:cover;object-position:left center}
+.cta-sakura__body{position:relative;z-index:2;width:min(1080px,92vw);margin-inline:auto;
+  display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:var(--sp-5)}
+.cta-sakura__text{font-size:clamp(1.15rem,.9rem + 1.2vw,1.6rem);font-weight:900;color:var(--c-ink);
+  line-height:1.6;text-shadow:0 2px 10px rgba(255,255,255,.7)}
+.cta-sakura__note{font-size:var(--fs-small);color:var(--c-ink-soft);font-weight:600}
 
 /* =========================================================
    Footer
@@ -384,7 +383,8 @@ h3{font-size:var(--fs-h3);font-weight:700}
    ========================================================= */
 @media (max-width:900px){
   .hero__inner{grid-template-columns:1fr;padding-top:112px;min-height:auto;padding-bottom:var(--sp-8)}
-  .hero__visual{display:none}
+  .hero__visual{height:260px;margin-top:var(--sp-2)}
+  .hero__visual .fcard{display:none}
   .hero__bg,.hero__orbs{height:100%}
   .hero__bg{background:linear-gradient(160deg,#dbe7fb,#eef3fb 55%,#f5f8fe)}
   .navtoggle .ic{color:var(--c-ink)}
@@ -403,9 +403,10 @@ h3{font-size:var(--fs-h3);font-weight:700}
 @media (max-width:768px){
   .navtoggle{display:inline-flex}
   .header__cta{display:none}
-  .stats{grid-template-columns:1fr;gap:var(--sp-4)}
-  .stat{display:flex;align-items:center;justify-content:center;gap:var(--sp-4);padding:var(--sp-4) var(--sp-5)}
-  .stat__label{margin-top:0}
+  .cta-sakura{flex-direction:column;align-items:stretch}
+  .cta-sakura__media{position:relative;height:200px}
+  .cta-sakura__body{align-items:center;text-align:center;padding:var(--sp-7) var(--sp-5);
+    background:linear-gradient(180deg,#fdeef0,#f4f0fb)}
 }
 @media (max-width:480px){
   .hero__lead{max-width:none}
@@ -451,7 +452,6 @@ h3{font-size:var(--fs-h3);font-weight:700}
     <a href="#problems">お悩み</a>
     <a href="#how">仕組み</a>
     <a href="#activities">活動例</a>
-    <a href="#faq">よくある質問</a>
     <a href="#start" class="btn btn--grad btn--pill">無料で始める
       <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
@@ -479,13 +479,12 @@ h3{font-size:var(--fs-h3);font-weight:700}
         <a href="#start" class="hero__login">ログインはこちら</a>
       </div>
     </div>
-    <div class="hero__visual" data-reveal="right" data-tilt aria-hidden="true">
-      <span class="hero__stars"></span>
-      <svg class="hero__tower" viewBox="0 0 100 320" fill="currentColor"><path d="M50 0 58 116 74 320 26 320 42 116Z" opacity=".92"/><rect x="40" y="126" width="20" height="6"/><rect x="35" y="180" width="30" height="6"/><rect x="29" y="244" width="42" height="6"/></svg>
-      <span class="hero__badge">スキマ時間で、<br />夢への一歩を</span>
-      <span class="fcard fcard--p"><span class="dot">P</span>+50 ポイント獲得！</span>
-      <span class="fcard fcard--chk"><span class="dot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>ミッション達成</span>
-      <span class="fcard fcard--msg"><span class="dot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l.9-5A8 8 0 1 1 21 12Z"/></svg></span>仲間とつながる</span>
+    <div class="hero__visual" data-reveal="right" data-tilt>
+      <img class="hero__photo" src="assets/hero.svg" width="760" height="880" loading="eager" decoding="async" alt="東京タワーの夜景を背景に、スマートフォンを手に未来を思い描く若者" />
+      <span class="hero__badge" aria-hidden="true">スキマ時間で、<br />夢への一歩を</span>
+      <span class="fcard fcard--p" aria-hidden="true"><span class="dot">P</span>+50 ポイント獲得！</span>
+      <span class="fcard fcard--chk" aria-hidden="true"><span class="dot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>ミッション達成</span>
+      <span class="fcard fcard--msg" aria-hidden="true"><span class="dot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l.9-5A8 8 0 1 1 21 12Z"/></svg></span>仲間とつながる</span>
     </div>
   </div>
 
@@ -520,31 +519,11 @@ h3{font-size:var(--fs-h3);font-weight:700}
   </div>
 </section>
 
-<!-- ===== Stats ===== -->
-<section class="section">
-  <div class="container">
-    <div class="stats" data-stagger>
-      <div class="stat" data-reveal="zoom">
-        <div class="stat__num"><span data-count="5">0</span><span class="suf">分/日〜</span></div>
-        <div class="stat__label">スキマ時間でOK</div>
-      </div>
-      <div class="stat" data-reveal="zoom">
-        <div class="stat__num"><span data-count="0">0</span><span class="suf">円</span></div>
-        <div class="stat__label">無料ではじめられる</div>
-      </div>
-      <div class="stat" data-reveal="zoom">
-        <div class="stat__num"><span data-count="100">0</span><span class="suf">+ 種類</span></div>
-        <div class="stat__label">多彩なミッション</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== Problems ===== -->
 <section class="section section--soft" id="problems">
   <span class="orb orb--pink orb--a" aria-hidden="true" style="width:280px;height:280px;left:-80px;top:40px;opacity:.3"></span>
   <div class="container">
-    <div class="s-title" data-reveal><span class="eyebrow">YOUR WORRIES</span><h2>こんな<span class="gtext">お悩み</span>はありませんか？</h2></div>
+    <div class="s-title" data-reveal><span class="eyebrow">YOUR WORRIES</span><h2>こんな<span class="otext">お悩み</span>はありませんか？</h2></div>
     <div class="cards-3" data-stagger>
       <div class="pcard" data-reveal="up">
         <svg class="pcard__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 0 3 1.5 3 3s-1 2.5-3 2.5S9 7.5 9 6s1-3 3-3Z"/><path d="M7 8.5C4.5 10 3 13 3 16a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5c0-3-1.5-6-4-7.5"/><path d="M12 12v5M10.5 13.5h2.2a1.2 1.2 0 0 1 0 2.4h-1.4a1.2 1.2 0 0 0 0 2.4H13.5"/></svg>
@@ -646,46 +625,17 @@ h3{font-size:var(--fs-h3);font-weight:700}
   </div>
 </section>
 
-<!-- ===== FAQ ===== -->
-<section class="section section--soft" id="faq">
-  <div class="container">
-    <div class="s-title" data-reveal><span class="eyebrow">FAQ</span><h2>よくある<span class="gtext">質問</span></h2></div>
-    <div class="faq" data-stagger>
-      <div class="acc" data-reveal="up">
-        <button class="acc__btn" aria-expanded="false" aria-controls="faq1" id="faq1-b">本当に無料で始められますか？
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
-        <div class="acc__panel" id="faq1" role="region" aria-labelledby="faq1-b"><div class="acc__inner"><p>はい。会員登録・コミュニティ活動への参加はすべて無料です。費用は一切かかりません。</p></div></div>
-      </div>
-      <div class="acc" data-reveal="up">
-        <button class="acc__btn" aria-expanded="false" aria-controls="faq2" id="faq2-b">スマホだけで参加できますか？
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
-        <div class="acc__panel" id="faq2" role="region" aria-labelledby="faq2-b"><div class="acc__inner"><p>はい。SNSのシェアや記事作成など、ほとんどの活動はスマホ1台で完結します。1日5分のスキマ時間から始められます。</p></div></div>
-      </div>
-      <div class="acc" data-reveal="up">
-        <button class="acc__btn" aria-expanded="false" aria-controls="faq3" id="faq3-b">貯めたポイントは何に使えますか？
-          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
-        <div class="acc__panel" id="faq3" role="region" aria-labelledby="faq3-b"><div class="acc__inner"><p>日本語学習プラットフォーム「Eduhon」で、介護・医療日本語やJLPT対策、面接対策などの学習に利用できます。</p></div></div>
-      </div>
-    </div>
+<!-- ===== CTA (sakura band) ===== -->
+<section class="cta-sakura" id="start">
+  <div class="cta-sakura__media" aria-hidden="true">
+    <img src="assets/sakura.svg" width="1440" height="460" loading="eager" decoding="async" alt="" />
   </div>
-</section>
-
-<!-- ===== CTA ===== -->
-<section class="cta" id="start">
-  <span class="orb orb--cyan orb--a" aria-hidden="true" style="width:360px;height:360px;left:-80px;top:-60px;opacity:.4"></span>
-  <span class="orb orb--violet orb--b" aria-hidden="true" style="width:340px;height:340px;right:-60px;bottom:-80px;opacity:.45"></span>
-  <div class="container">
-    <span class="cta__eyebrow" data-reveal>START FREE</span>
-    <p class="cta__text" data-reveal>あなたの「ちょっとした時間」が、<br /><span class="gtext">あなたの未来の学び</span>につながります。</p>
-    <div class="cta__actions" data-reveal="zoom">
-      <a href="#start" class="btn btn--grad btn--lg" data-magnetic>無料で詳細を見る
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
-    <p class="cta__note" data-reveal>登録は1分で完了。クレジットカードは不要です。</p>
+  <div class="cta-sakura__body">
+    <p class="cta-sakura__text" data-reveal="right">あなたの「ちょっとした時間」が、<br />あなたの未来の学びにつながります。</p>
+    <a href="#start" class="btn btn--grad btn--lg" data-magnetic data-reveal="right">無料で詳細を見る
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <p class="cta-sakura__note" data-reveal="right">登録は1分で完了。クレジットカードは不要です。</p>
   </div>
 </section>
 

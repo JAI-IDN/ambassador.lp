@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 460" width="1440" height="460" preserveAspectRatio="xMidYMid slice" role="img" aria-label="桜の下で笑顔の若者たち">
+  <defs>
+    <linearGradient id="ssky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd7e6"/>
+      <stop offset="0.5" stop-color="#ffe6ec"/>
+      <stop offset="1" stop-color="#fff4ec"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.8" cy="0.18" r="0.5">
+      <stop offset="0" stop-color="#fff6e8" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fff6e8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4e7d8"/>
+      <stop offset="1" stop-color="#ecdcc8"/>
+    </linearGradient>
+    <radialGradient id="petalG" cx="0.5" cy="0.4" r="0.6">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ffc2d6"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1440" height="460" fill="url(#ssky)"/>
+  <rect width="1440" height="460" fill="url(#sun)"/>
+
+  <!-- distant hills -->
+  <path d="M0 360 Q360 312 720 350 T1440 344 V460 H0 Z" fill="#f6dfe6" opacity="0.8"/>
+  <path d="M0 388 Q420 350 860 384 T1440 380 V460 H0 Z" fill="#f3d2dd" opacity="0.7"/>
+  <!-- ground -->
+  <rect x="0" y="396" width="1440" height="64" fill="url(#ground)"/>
+  <path d="M0 396 Q720 380 1440 396 V410 Q720 396 0 410 Z" fill="#e7c9a8" opacity="0.6"/>
+
+  <!-- sakura branch clusters (corners) -->
+  <g>
+    <!-- top-left branch -->
+    <path d="M-10 -10 Q120 60 200 40 Q150 90 250 120" stroke="#7a4a3a" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M120 60 Q150 20 210 30 M200 40 Q230 70 210 110" stroke="#7a4a3a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- top-right branch -->
+    <path d="M1450 -10 Q1320 60 1240 44 Q1300 92 1200 120" stroke="#7a4a3a" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M1320 60 Q1290 20 1230 30 M1240 44 Q1210 74 1232 112" stroke="#7a4a3a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+  <!-- blossom clusters -->
+  <g id="blossoms">
+    <g transform="translate(30,30)" fill="url(#petalG)" stroke="#ffb3cb" stroke-width="1"></g>
+  </g>
+  <g fill="url(#petalG)" stroke="#ffc2d6" stroke-width="0.8">
+    <!-- helper: each blossom = 5 small ellipses + center -->
+    <g id="b1" transform="translate(60,40)"><circle r="9" cx="0" cy="-9"/><circle r="9" cx="9" cy="-3"/><circle r="9" cx="6" cy="8"/><circle r="9" cx="-6" cy="8"/><circle r="9" cx="-9" cy="-3"/><circle r="4" cx="0" cy="0" fill="#ffd34d" stroke="none"/></g>
+    <use href="#b1" transform="translate(110,0) scale(0.85)"/>
+    <use href="#b1" transform="translate(160,60) scale(1.05)"/>
+    <use href="#b1" transform="translate(40,90) scale(0.7)"/>
+    <use href="#b1" transform="translate(190,18) scale(0.6)"/>
+    <use href="#b1" transform="translate(1180,0)"/>
+    <use href="#b1" transform="translate(1120,40) scale(0.85)"/>
+    <use href="#b1" transform="translate(1230,60) scale(1.05)"/>
+    <use href="#b1" transform="translate(1300,28) scale(0.7)"/>
+    <use href="#b1" transform="translate(1160,96) scale(0.65)"/>
+  </g>
+  <!-- falling petals -->
+  <g fill="#ffc2d6" opacity="0.9">
+    <path d="M300 120 q8 -6 14 2 q-6 8 -14 -2 Z"/>
+    <path d="M520 80 q9 -5 13 4 q-7 7 -13 -4 Z" opacity="0.8"/>
+    <path d="M760 150 q8 -6 14 2 q-6 8 -14 -2 Z" opacity="0.7"/>
+    <path d="M980 100 q9 -5 13 4 q-7 7 -13 -4 Z"/>
+    <path d="M420 200 q8 -6 14 2 q-6 8 -14 -2 Z" opacity="0.7"/>
+    <path d="M640 230 q9 -5 13 4 q-7 7 -13 -4 Z" opacity="0.6"/>
+    <path d="M880 210 q8 -6 14 2 q-6 8 -14 -2 Z" opacity="0.7"/>
+    <path d="M1060 180 q9 -5 13 4 q-7 7 -13 -4 Z" opacity="0.6"/>
+  </g>
+
+  <!-- three friends (shifted left so the right half stays clear) -->
+  <g transform="translate(-170 0)">
+  <!-- shadows -->
+  <g fill="#d9b48f" opacity="0.5">
+    <ellipse cx="560" cy="432" rx="56" ry="9"/>
+    <ellipse cx="700" cy="436" rx="60" ry="10"/>
+    <ellipse cx="838" cy="432" rx="54" ry="9"/>
+  </g>
+  <!-- person A (left, teal) -->
+  <g>
+    <rect x="540" y="318" width="44" height="96" rx="18" fill="#2f6f7a"/>
+    <rect x="548" y="396" width="12" height="40" rx="5" fill="#34506e"/>
+    <rect x="566" y="396" width="12" height="40" rx="5" fill="#34506e"/>
+    <rect x="530" y="330" width="14" height="52" rx="7" fill="#2f6f7a"/>
+    <rect x="582" y="330" width="14" height="52" rx="7" fill="#2f6f7a"/>
+    <circle cx="562" cy="300" r="24" fill="#e8b48c"/>
+    <path d="M540 296 q22 -34 44 0 q-6 -18 -22 -18 q-16 0 -22 18 Z" fill="#3a2a22"/>
+  </g>
+  <!-- person B (center, pink, arm raised) -->
+  <g>
+    <rect x="678" y="320" width="46" height="100" rx="18" fill="#e86f93"/>
+    <rect x="686" y="402" width="13" height="40" rx="6" fill="#42506e"/>
+    <rect x="704" y="402" width="13" height="40" rx="6" fill="#42506e"/>
+    <rect x="668" y="316" width="14" height="56" rx="7" fill="#e86f93"/>
+    <rect x="720" y="288" width="14" height="58" rx="7" fill="#e86f93" transform="rotate(24 727 317)"/>
+    <circle cx="701" cy="300" r="25" fill="#f0c19a"/>
+    <path d="M678 298 q23 -36 46 0 q-6 -20 -23 -20 q-17 0 -23 20 Z" fill="#241a14"/>
+  </g>
+  <!-- person C (right, denim) -->
+  <g>
+    <rect x="816" y="322" width="44" height="94" rx="18" fill="#3f74c4"/>
+    <rect x="824" y="398" width="12" height="40" rx="5" fill="#34506e"/>
+    <rect x="842" y="398" width="12" height="40" rx="5" fill="#34506e"/>
+    <rect x="806" y="334" width="14" height="50" rx="7" fill="#3f74c4"/>
+    <rect x="858" y="334" width="14" height="50" rx="7" fill="#3f74c4"/>
+    <circle cx="838" cy="304" r="24" fill="#e8b48c"/>
+    <path d="M816 300 q22 -34 44 0 q-6 -18 -22 -18 q-16 0 -22 18 Z" fill="#2e2018"/>
+  </g>
+  </g>
+</svg>
