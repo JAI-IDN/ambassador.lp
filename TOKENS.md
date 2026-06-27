@@ -28,7 +28,9 @@
 | `--c-line` | `#e6ecf6` | ボーダー/区切り |
 | `--c-accent` | `#2f6bff` | アクセント主 / リンク |
 | `--c-accent-deep` | `#2454d6` | アクセント濃 / ホバー |
-| `--c-accent-cyan` | `#38bdf8` | グラデ起点 |
+| `--c-cyan` | `#22d3ee` | グラデ起点 / 活気 |
+| `--c-violet` | `#7c5cff` | グラデ終点 / 活気 |
+| `--c-pink` | `#ff5d8f` | 差し色 / 装飾オーブ |
 | `--c-point` | `#f5a623` | ポイント/コイン主 |
 | `--c-point-hi` | `#ffd34d` | コイン光沢 |
 | `--c-dark` | `#15213f` | フッター/ヒーロー深部 |
@@ -36,8 +38,9 @@
 | `--c-green` | `#eaf7f0` | 活動カード(記事) |
 | `--c-purple` | `#f0eefb` | 活動カード(動画) |
 | `--c-orange` | `#fdf3e6` | 活動カード(サポート) |
-| `--grad-accent` | `linear-gradient(90deg,#38bdf8,#3b82f6,#2f6bff)` | CTAボタン/下線 |
-| `--grad-hero` | `radial-gradient(120% 120% at 80% 0%, #1a2c63, #243a7a, #3a5bb0, #cdddf6)` | ヒーロー背景 |
+| `--grad-brand` | `linear-gradient(120deg,#22d3ee,#3b82f6,#7c5cff)` | 見出しグラデ文字/装飾 |
+| `--grad-accent` | `linear-gradient(90deg,#22d3ee,#3b82f6,#2f6bff)` | CTAボタン/下線 |
+| `--grad-hero` | `linear-gradient(102deg,#eaf2ff,#dde8fb,#34508f,#1f2e58,#101a36)` | ヒーロー背景 |
 
 コントラスト: `--c-ink` on `--c-bg` ≈ 12.8:1、`--c-ink-soft` on `--c-bg` ≈ 7.6:1（いずれもWCAG AA/AAA本文基準クリア）。
 
@@ -54,7 +57,7 @@
 
 | Token | size (clamp) | line-height | letter-spacing | weight |
 |---|---|---|---|---|
-| `--fs-h1` | `clamp(1.7rem, 1.2rem + 2.2vw, 2.45rem)` | 1.4 | 0.04em | 900 |
+| `--fs-h1` | `clamp(1.8rem, 1.2rem + 2.6vw, 2.7rem)` | 1.4 | 0.04em | 900 |
 | `--fs-h2` | `clamp(1.4rem, 1.05rem + 1.5vw, 1.9rem)` | 1.5 | 0.03em | 900 |
 | `--fs-h3` | `clamp(1rem, 0.95rem + 0.3vw, 1.15rem)` | 1.6 | 0.02em | 700 |
 | `--fs-lead` | `clamp(0.92rem, 0.88rem + 0.2vw, 1rem)` | 1.9 | 0.01em | 500 |
@@ -100,16 +103,22 @@
 | Token | 値 | 用途 |
 |---|---|---|
 | `--ease` | `cubic-bezier(.16,1,.3,1)` | 標準イージング |
-| `--dur-fast` | 150ms | ホバー |
-| `--dur-base` | 300ms | 開閉/汎用 |
-| `--dur-slow` | 600ms | 出現 |
+| `--spring` | `cubic-bezier(.34,1.56,.64,1)` | 弾むホバー/アイコン |
+| `--dur-fast` | 160ms | ホバー |
+| `--dur-base` | 340ms | 開閉/汎用 |
+| `--dur-slow` | 760ms | 出現 |
 
-- **出現 (scroll-in)**: `[data-fade]` を IntersectionObserver で一度だけ `opacity:0→1 / translateY(24px)→0`、`--dur-slow`、`--ease`。順次は `transition-delay` を段階付与。
-- **ホバー**: ボタン/カードは `translateY(-2〜-4px)` + 影リフト、`--dur-fast`。
+- **出現 (scroll-in)**: `[data-reveal]` を IntersectionObserver で一度だけ表示。方向バリエーション `up / left / right / zoom / blur`。`[data-stagger]` 親の子要素に `transition-delay` を 90ms 刻みで段階付与。
+- **カウントアップ**: `[data-count]` を表示時に `requestAnimationFrame` で 0→目標値へ（ease-out cubic）。
+- **環境光オーブ**: ぼかしたグラデ円を `@keyframes drift` で浮遊。スクロール `data-parallax` で視差、ヒーローはマウス追従。
+- **3Dチルト**: `[data-tilt]` を `rAF + lerp` で `rotateX/Y`（最大8°、ポインタ環境のみ）。
+- **マグネット**: CTAを `rAF + lerp` でポインタ追従。ボタンは光沢スイープ＋グラデ移動。
+- **ホバー**: カード `translateY` リフト＋影／アイコン `scale+rotate`（`--spring`）。
+- **コイン/Pバッジ**: 連続フロート＋光沢スイープ／パルスリング。
+- **スクロール進捗バー**: ページ上端にブランドグラデのプログレス。
 - **アコーディオン**: `grid-template-rows: 0fr → 1fr`、`--dur-base`。
-- **ナビ開閉**: `aria-expanded` 連動、フォーカストラップ。
-- **マグネット**: CTAボタンを `requestAnimationFrame + lerp` で自前追従（ポインタ環境のみ）。
-- **`prefers-reduced-motion: reduce`**: 全アニメ/トランジションを無効化、即時表示。
+- **ナビ開閉**: `aria-expanded` 連動、フォーカストラップ、Escape。
+- **`prefers-reduced-motion: reduce`**: 全アニメ/トランジション/オーブ/星を無効化し即時表示。
 
 ---
 
@@ -118,8 +127,9 @@
 | # | セクション | 役割 |
 |---|---|---|
 | 1 | Header（sticky/nav toggle） | ロゴ・主CTA・メニュー |
-| 2 | Hero | 価値提案見出し + 主CTA + ログイン |
-| 3 | Process strip | 5ステップ俯瞰（スマホ→…→日本で働く） |
+| 2 | Hero | 価値提案見出し + 主CTA + ログイン + 浮遊カード演出 |
+| 3 | Process strip | 5ステップ俯瞰（グラスモーフィズム） |
+| 3.5 | Stats band | カウントアップ3指標（5分/0円/100+） |
 | 4 | Problems（お悩み） | 3つの課題提示 |
 | 5 | How it works（仕組み） | 5ステップのフロー詳細 |
 | 6 | Activities（活動例） | 4カテゴリのカード |
