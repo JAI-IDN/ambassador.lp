@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --grad-accent: linear-gradient(90deg, #38bdf8 0%, #3b82f6 55%, #2f6bff 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Noto Sans JP", system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  color: #1f2a44;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+@layer components {
+  .btn-grad {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full font-bold text-white overflow-hidden transition-transform duration-150;
+    background: var(--grad-accent);
+    box-shadow: 0 12px 28px rgba(47, 107, 255, 0.4);
+  }
+  .btn-grad:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(47, 107, 255, 0.5);
+  }
+  .btn-grad::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 32%, rgba(255, 255, 255, 0.5) 50%, transparent 68%);
+    transform: translateX(-130%);
+  }
+  .btn-grad:hover::after {
+    animation: sweep 0.85s ease;
+  }
+  @keyframes sweep {
+    to {
+      transform: translateX(130%);
+    }
+  }
+}
+
+.hero-title {
+  font-size: clamp(1.6rem, 1.1rem + 1.5vw, 2.15rem);
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+  font-weight: 900;
+}
+.section-title {
+  font-size: clamp(1.4rem, 1.05rem + 1.4vw, 1.95rem);
+  font-weight: 900;
+}
+.points-title {
+  font-size: clamp(1.25rem, 1rem + 1.1vw, 1.55rem);
+  font-weight: 900;
+  line-height: 1.5;
+}
+.cta-title {
+  font-size: clamp(1.1rem, 0.9rem + 1.1vw, 1.55rem);
+  font-weight: 900;
+  line-height: 1.6;
+}
+
+/* gradient underline used under section titles */
+.title-rule::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  border-radius: 4px;
+  margin: 16px auto 0;
+  background: var(--grad-accent);
+}
+.title-rule.coral::after {
+  background: linear-gradient(90deg, #ff8a3d, #f5663b);
+}
+
+/* scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
